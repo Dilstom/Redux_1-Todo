@@ -3,11 +3,7 @@ import { ADD_TODO } from './actions';
 
 let defaultState = {
  title: 'Welcome to Redux! And more',
- todos: [
-  {
-   todo: 'Does it work?',
-  },
- ],
+ todos: [],
 };
 
 // action is an object = {type: , payload}
