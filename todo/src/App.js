@@ -32,7 +32,7 @@ class App extends React.Component {
      </p>
      <h1>{this.props.titleOne}</h1>
     </header>
-    <TodoInput addTodo={this.addTodo} />
+    <TodoInput />
     <TodoList />
    </div>
   );
