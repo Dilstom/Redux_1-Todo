@@ -1,18 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
+import TodoList from './TodoList';
+import TodoInput from './TodoInput';
 
-function App(props) {
- return (
-  <div className="App">
-   <header className="App-header">
-    <p>
-     Edit <code>src/App.js</code> and save to reload.
-    </p>
-    <h1>{props.titleOne}</h1>
-   </header>
-  </div>
- );
+class App extends React.Component {
+ constructor(props) {
+  super(props);
+  this.state = {
+   todos: [],
+  };
+ }
+
+ addTodo = text => {
+  let newTodo = {
+   todo: text,
+   complete: false,
+  };
+  this.setState(prev => {
+   // instead of creating a copy of a state and pushing newTodo
+   return { todos: [...prev.todos, newTodo] };
+  });
+ };
+
+ render() {
+  return (
+   <div className="App">
+    <header className="App-header">
+     <p>
+      Edit <code>src/App.js</code> and save to reload.
+     </p>
+     <h1>{this.props.titleOne}</h1>
+    </header>
+    <TodoInput addTodo={this.addTodo} />
+    <TodoList />
+   </div>
+  );
+ }
 }
 
 function mapStateToProps(state) {
