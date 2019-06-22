@@ -1,9 +1,14 @@
-import { ADD_TODO } from './actions';
+import { ADD_TODO, DELETE_TODO } from './actions';
 // import { CHANGE_TITLE } from './actions';
 
 let defaultState = {
- title: 'Welcome to Redux! And more',
- todos: [],
+ todos: [
+  {
+   id: 1,
+   title: 'Welcome to Redux! And more',
+   completed: false,
+  },
+ ],
 };
 
 // action is an object = {type: , payload}
@@ -12,13 +17,16 @@ export default function reducer(state = defaultState, action) {
  switch (action.type) {
   case ADD_TODO:
    let newTodos = [...state.todos, action.payload];
-   return Object.assign({}, state, { todos: newTodos });
+   return Object.assign({}, state, { todos: newTodos, id: state.id + 1 });
   //   case CHANGE_TITLE:
   //    // old way
   //    //  it is going to create a new object - `{}`, it's gonna transfer state over that new object - `state`, and `{title: action.title}` will overwrite whatever was on state.title before
   //    //    return Object.assign({}, state, { title: action.title });
-  //    // new way:
+  //    // vs. new way:
   //    return { ...state, title: action.title };
+  case DELETE_TODO:
+   let newState = state.todos.filter(todo => todo.id !== action.payload);
+   return Object.assign({}, state, { todos: newState });
   default:
    return state;
  }
