@@ -8,30 +8,25 @@ class App extends React.Component {
  constructor(props) {
   super(props);
   this.state = {
-   todos: [],
+   //    todos: [],
   };
  }
 
- addTodo = text => {
-  let newTodo = {
-   todo: text,
-   complete: false,
-  };
-  this.setState(prev => {
-   // instead of creating a copy of a state and pushing newTodo
-   return { todos: [...prev.todos, newTodo] };
-  });
- };
+ //  addTodo = text => {
+ //   let newTodo = {
+ //    todo: text,
+ //    complete: false,
+ //   };
+ //   this.setState(prev => {
+ //    // instead of creating a copy of a state and pushing newTodo
+ //    return { todos: [...prev.todos, newTodo] };
+ //   });
+ //  };
 
  render() {
   return (
    <div className="App">
-    <header className="App-header">
-     <p>
-      Edit <code>src/App.js</code> and save to reload.
-     </p>
-     <h1>{this.props.titleOne}</h1>
-    </header>
+    <h1>{this.props.titleOne}</h1>
     <TodoInput />
     <TodoList />
    </div>
@@ -41,7 +36,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
  console.log(state);
- return { titleOne: state.title };
+ //  return { titleOne: state.title };
 }
 
 export default connect(mapStateToProps)(App);
