@@ -13,7 +13,12 @@ class TodoInput extends React.Component {
 
  createNewTodo = e => {
   e.preventDefault();
-  this.props.addTodo(this.state.inputValue);
+  const newObj = {
+   id: this.props.todos.length + 1,
+   completed: false,
+   title: this.state.inputValue,
+  };
+  this.props.addTodo(newObj);
   this.setState({ inputValue: '' });
  };
 
@@ -33,7 +38,9 @@ class TodoInput extends React.Component {
 
 // adds props
 function mapStateToProps(state) {
- return {};
+ return {
+  todos: state.todos,
+ };
 }
 
 export default connect(
