@@ -1,25 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteTodo } from './actions';
+import { deleteTodo, toggleComplete } from './actions';
+
+const decor = { textDecoration: 'line-through' };
 
 function TodoList(props) {
- //  handleDelete = e => {
- //   props.deleteTodo(todo.id);
- //  };
  console.log('checking todos', props.todos);
  return (
   <div>
    <ul>
     {props.todos.map((todo, i) => {
      return (
-      <li key={i}>
-       {todo.title}
+      <li style={todo.completed ? decor : null} key={i}>
+       <div onClick={() => props.toggleComplete(todo.id)}>{todo.title}</div>
        <button
         onClick={() => {
          props.deleteTodo(todo.id);
         }}
        >
-        <div>Delete</div>
+        X
        </button>
       </li>
      );
@@ -35,10 +34,9 @@ function mapStateToProps(state) {
   // we can add any props we want f/e
   // anotherTitle: 'Something that doesn't exist in our store'
   todos: state.todos,
-  //   id: state.id,
  };
 }
 export default connect(
  mapStateToProps,
- { deleteTodo }
+ { deleteTodo, toggleComplete }
 )(TodoList);
