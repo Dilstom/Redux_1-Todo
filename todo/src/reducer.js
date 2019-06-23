@@ -1,4 +1,9 @@
-import { ADD_TODO, DELETE_TODO } from './actions';
+import {
+ ADD_TODO,
+ DELETE_TODO,
+ TOGGLE_COMPLETE,
+ DELETE_COMPLETE,
+} from './actions';
 // import { CHANGE_TITLE } from './actions';
 
 let defaultState = {
@@ -27,6 +32,22 @@ export default function reducer(state = defaultState, action) {
   case DELETE_TODO:
    let newState = state.todos.filter(todo => todo.id !== action.payload);
    return Object.assign({}, state, { todos: newState });
+
+  case DELETE_COMPLETE:
+   let deleteComplete = state.todos.filter(todo => todo.completed === false);
+   return Object.assign({}, state, { todos: deleteComplete });
+
+  case TOGGLE_COMPLETE:
+   let checkComplete = state.todos.map(todo => {
+    if (todo.id === action.payload) {
+     todo.completed = !todo.completed;
+     return todo;
+    } else {
+     return todo;
+    }
+   });
+   return Object.assign({}, state, { todos: checkComplete });
+
   default:
    return state;
  }
