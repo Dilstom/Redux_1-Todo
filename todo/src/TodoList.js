@@ -3,16 +3,24 @@ import { connect } from 'react-redux';
 import { deleteTodo, toggleComplete } from './actions';
 
 const decor = { textDecoration: 'line-through' };
+const classComplete = 'list-group-item list-group-item-secondary displayFlex';
 
 function TodoList(props) {
  console.log('checking todos', props.todos);
  return (
-  <div>
-   <ul>
+  <div className="todoWrapper">
+   <ul className="list-group">
     {props.todos.map((todo, i) => {
      return (
-      <li style={todo.completed ? decor : null} key={i}>
+      <li
+       style={todo.completed ? decor : null}
+       key={i}
+       className={
+        todo.completed ? classComplete : 'list-group-item displayFlex'
+       }
+      >
        <div onClick={() => props.toggleComplete(todo.id)}>{todo.title}</div>
+
        <button
         onClick={() => {
          props.deleteTodo(todo.id);
