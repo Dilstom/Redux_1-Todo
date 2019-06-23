@@ -26,7 +26,7 @@ class App extends React.Component {
  render() {
   return (
    <div className="App">
-    <h1>{this.props.titleOne}</h1>
+    <h1 className="mb-3">{this.props.titleOne}</h1>
     <TodoInput />
     <TodoList />
    </div>
@@ -36,7 +36,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
  console.log(state);
- //  return { titleOne: state.title };
+ return { titleOne: 'Todo App' };
 }
 
 export default connect(mapStateToProps)(App);
