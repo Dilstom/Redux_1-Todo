@@ -24,7 +24,7 @@ class TodoInput extends React.Component {
 
  render() {
   return (
-   <div>
+   <div className="inputField">
     <form onSubmit={this.createNewTodo}>
      <input
       type="text"
@@ -33,8 +33,8 @@ class TodoInput extends React.Component {
      />
      <button type="submit">Add Todo</button>
     </form>
-    <button onClick={this.props.deleteComplete}>
-     Delete All Completed Todos
+    <button onClick={this.props.deleteComplete} className="deleteAllComplete">
+     Delete Completed Todos
     </button>
    </div>
   );
